@@ -24,14 +24,6 @@ class Module extends DI.Module {
       }),
       this.object(data)
     );
-
-    this.inject(StringFormat).with(
-      this.object({})
-    );
-
-    this.inject(DateFormat).with(
-      this.global('@scola.i18n.moment')
-    );
   }
 }
 
