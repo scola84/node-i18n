@@ -35,7 +35,6 @@
     "@scola/events": "^1.0.0",
     "lodash.get": "^3.7.0",
     "lodash.has": "^3.2.1",
-    "lodash.template": "^3.6.2",
-    "moment-timezone": "^0.5.0"
+    "lodash.template": "^3.6.2"
   }
 }

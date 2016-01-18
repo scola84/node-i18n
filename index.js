@@ -1,8 +1,5 @@
 'use strict';
 
-const moment = require('moment-timezone');
-require('./node_modules/moment/min/locales.min.js');
-
 const Configuration = require('@scola/config');
 const DI = require('@scola/di');
 
@@ -33,7 +30,7 @@ class Module extends DI.Module {
     );
 
     this.inject(DateFormat).with(
-      this.value(moment)
+      this.global('@scola.i18n.moment')
     );
   }
 }
