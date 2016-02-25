@@ -1,6 +1,5 @@
 'use strict';
 
-const Configuration = require('@scola/config');
 const DI = require('@scola/di');
 
 const I18n = require('./lib/i18n');
@@ -15,7 +14,6 @@ const data = require('./lib/data');
 class Module extends DI.Module {
   configure() {
     this.inject(I18n).with(
-      this.singleton(Configuration),
       this.object({
         currency: this.instance(CurrencyFormat),
         date: this.instance(DateFormat),

@@ -30,7 +30,6 @@
     "babelify": "^7.2.0"
   },
   "dependencies": {
-    "@scola/config": "^1.0.3",
     "@scola/di": "^2.0.0",
     "@scola/events": "^1.1.2",
     "lodash.get": "^3.7.0",
