@@ -1,0 +1,24 @@
+{
+  "name": "@scola/i18n",
+  "version": "0.0.0",
+  "description": "I18n",
+  "repository": "github:scola84/node-i18n",
+  "author": "M.C. van den Boogaart <scola@kvdb.name>",
+  "license": "MIT",
+  "main": "./dist/i18n.js",
+  "jsnext:main": "./index.js",
+  "dependencies": {
+    "lodash-es": "^4.13.1",
+    "moment": "^2.13.0",
+    "moment-timezone": "^0.5.4"
+  },
+  "devDependencies": {
+    "babel-preset-es2015-rollup": "^1.1.1",
+    "rollup": "^0.26.3",
+    "rollup-plugin-babel": "^2.4.0",
+    "rollup-plugin-node-resolve": "^1.7.0"
+  },
+  "scripts": {
+    "build": "rollup -c -o dist/i18n.js"
+  }
+}
