@@ -8,8 +8,10 @@
   "main": "./dist/i18n.js",
   "jsnext:main": "./index.js",
   "dependencies": {
+    "@scola/deep": "^1.0.0",
+    "events": "^1.1.1",
     "lodash-es": "^4.13.1",
-    "moment": "^2.13.0",
+    "moment": "^2.14.1",
     "moment-timezone": "^0.5.4"
   },
   "devDependencies": {
