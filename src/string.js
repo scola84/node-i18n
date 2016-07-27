@@ -2,7 +2,7 @@ import { assign, get, has } from '@scola/deep';
 import template from 'lodash-es/template.js';
 import AbstractFormat from './abstract';
 
-export default class NumberFormat extends AbstractFormat {
+export default class SringFormat extends AbstractFormat {
   constructor(i18n) {
     super(i18n);
     this._data = {};

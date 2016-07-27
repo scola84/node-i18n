@@ -2,7 +2,7 @@ import moment from 'moment';
 import 'moment-timezone';
 import AbstractFormat from './abstract';
 
-export default class NumberFormat extends AbstractFormat {
+export default class DateFormat extends AbstractFormat {
   format(value, format, locale, timezone) {
     return moment(value)
       .locale(locale || this._i18n.locale())
