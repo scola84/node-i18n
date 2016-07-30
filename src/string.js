@@ -13,7 +13,7 @@ export default class StringFormat extends AbstractFormat {
   }
 
   format(value, values, locale) {
-    value = this._resolve(value, locale);
+    value = this.get(value, locale) || value;
     values = values || {};
 
     value = typeof value === 'object' ?
@@ -25,16 +25,16 @@ export default class StringFormat extends AbstractFormat {
     })(values);
   }
 
-  _resolve(value, locale) {
+  get(value, locale) {
     locale = locale || this._i18n.locale();
     const [language] = locale.split('_');
 
     if (has(this._data, locale + '.' + value)) {
-      value = get(this._data, locale + '.' + value);
+      return get(this._data, locale + '.' + value);
     } else if (has(this._data, language + '.' + value)) {
-      value = get(this._data, language + '.' + value);
+      return get(this._data, language + '.' + value);
     }
 
-    return value;
+    return null;
   }
 }
