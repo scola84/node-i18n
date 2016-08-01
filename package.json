@@ -17,6 +17,6 @@
     "rollup": "^0.26.3"
   },
   "scripts": {
-    "build": "rollup -i ./index.js -o ./dist/i18n.js -f cjs"
+    "build": "rollup -c -o ./dist/i18n.js"
   }
 }
