@@ -6,12 +6,13 @@ import CurrencyFormat from './currency';
 import DateFormat from './date';
 import NumberFormat from './number';
 import StringFormat from './string';
+import packageData from '../data/data';
 
 export default class I18n extends EventEmitter {
   constructor() {
     super();
 
-    this._data = {};
+    this._data = packageData;
 
     this._locale = null;
     this._timezone = null;
