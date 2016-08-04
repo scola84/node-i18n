@@ -1,6 +1,6 @@
 /* eslint prefer-reflect: "off" */
 
-import { assign } from '@scola/deep';
+import merge from 'lodash-es/merge';
 import EventEmitter from 'events';
 import CurrencyFormat from './currency';
 import DateFormat from './date';
@@ -32,7 +32,7 @@ export default class I18n extends EventEmitter {
       return this._data[data];
     }
 
-    assign(this._data, data);
+    merge(this._data, data);
     return this;
   }
 

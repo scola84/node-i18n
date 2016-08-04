@@ -1,5 +1,7 @@
-import { assign, get, has } from '@scola/deep';
-import template from 'lodash-es/template.js';
+import get from 'lodash-es/get';
+import has from 'lodash-es/has';
+import merge from 'lodash-es/merge';
+import template from 'lodash-es/template';
 import AbstractFormat from './abstract';
 
 export default class StringFormat extends AbstractFormat {
@@ -9,7 +11,7 @@ export default class StringFormat extends AbstractFormat {
   }
 
   data(data) {
-    assign(this._data, data);
+    merge(this._data, data);
   }
 
   format(value, values, locale) {
