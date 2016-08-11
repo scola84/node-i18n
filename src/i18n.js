@@ -43,9 +43,8 @@ export default class I18n extends EventEmitter {
 
     this._locale = locale;
 
-    this.emit('locale', {
-      locale,
-      data: this.data()
+    this.emit('change', {
+      locale
     });
 
     return this;
@@ -58,9 +57,8 @@ export default class I18n extends EventEmitter {
 
     this._timezone = timezone;
 
-    this.emit('timezone', {
-      timezone,
-      data: this.data()
+    this.emit('change', {
+      timezone
     });
 
     return this;
