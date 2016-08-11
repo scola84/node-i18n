@@ -12,6 +12,7 @@ export default class StringFormat extends AbstractFormat {
 
   data(data) {
     merge(this._data, data);
+    return this;
   }
 
   format(value, values, locale) {
@@ -19,7 +20,7 @@ export default class StringFormat extends AbstractFormat {
     values = values || {};
 
     value = typeof value === 'object' ?
-      value[values.number] || value.d || null :
+      value[values.index] || value.d || null :
       value;
 
     return template(value, {
