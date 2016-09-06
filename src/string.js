@@ -10,8 +10,8 @@ export default class StringFormat extends AbstractFormat {
     this._data = {};
   }
 
-  data(data) {
-    merge(this._data, data);
+  data(value) {
+    merge(this._data, value);
     return this;
   }
 

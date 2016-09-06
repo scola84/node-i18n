@@ -3,22 +3,22 @@ import 'moment-timezone';
 import AbstractFormat from './abstract';
 
 export default class DateFormat extends AbstractFormat {
-  format(value, format, locale, timezone) {
+  format(dateValue, dateFormat, locale, timezone) {
     return this
-      .moment(locale, timezone, value)
-      .format(format);
+      .moment(locale, timezone, dateValue)
+      .format(dateFormat);
   }
 
-  moment(locale, timezone, value) {
-    return moment(value)
+  moment(locale, timezone, dateValue) {
+    return moment(dateValue)
       .locale(locale || this._i18n.locale())
       .tz(timezone || this._i18n.timezone());
   }
 
-  parse(value, format, locale, timezone) {
+  parse(dateValue, dateFormat, locale, timezone) {
     const result = moment.tz(
-      value,
-      format,
+      dateValue,
+      dateFormat,
       locale || this._i18n.locale(),
       true,
       timezone || this._i18n.timezone()

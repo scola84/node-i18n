@@ -1,7 +1,7 @@
 /* eslint prefer-reflect: "off" */
 
 import merge from 'lodash-es/merge';
-import EventEmitter from 'events';
+import { EventEmitter } from '@scola/events';
 import CurrencyFormat from './currency';
 import DateFormat from './date';
 import NumberFormat from './number';
@@ -23,42 +23,42 @@ export default class I18n extends EventEmitter {
     this._string = null;
   }
 
-  data(data) {
-    if (typeof data === 'undefined') {
+  data(value) {
+    if (typeof value === 'undefined') {
       return this._data[this._locale];
     }
 
     if (typeof data === 'string') {
-      return this._data[data];
+      return this._data[value];
     }
 
-    merge(this._data, data);
+    merge(this._data, value);
     return this;
   }
 
-  locale(locale) {
-    if (typeof locale === 'undefined') {
+  locale(value) {
+    if (typeof value === 'undefined') {
       return this._locale;
     }
 
-    this._locale = locale;
+    this._locale = value;
 
     this.emit('change', {
-      locale
+      locale: value
     });
 
     return this;
   }
 
-  timezone(timezone) {
-    if (typeof timezone === 'undefined') {
+  timezone(value) {
+    if (typeof value === 'undefined') {
       return this._timezone;
     }
 
-    this._timezone = timezone;
+    this._timezone = value;
 
     this.emit('change', {
-      timezone
+      timezone: value
     });
 
     return this;
