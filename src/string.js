@@ -1,8 +1,8 @@
 import get from 'lodash-es/get';
 import has from 'lodash-es/has';
 import merge from 'lodash-es/merge';
-import template from 'lodash-es/template';
 import AbstractFormat from './abstract';
+import replace from './helper/replace';
 
 export default class StringFormat extends AbstractFormat {
   constructor(i18n) {
@@ -23,9 +23,7 @@ export default class StringFormat extends AbstractFormat {
       value[values.index] || value.d || null :
       value;
 
-    return template(value, {
-      interpolate: /{([\s\S]+?)}/g
-    })(values);
+    return replace(value, values);
   }
 
   get(value, locale) {

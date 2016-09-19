@@ -1,13 +1,12 @@
-import template from 'lodash-es/template.js';
 import NumberFormat from './number';
+import escape from './helper/escape';
+import replace from './helper/replace';
 
 export default class CurrencyFormat extends NumberFormat {
   format(value, locale) {
     const data = this._i18n.data(locale).currency;
 
-    return template(data.format[value < 0 ? 'n' : 'p'], {
-      interpolate: /{{([\s\S]+?)}}/g
-    })({
+    return replace(data.format[value < 0 ? 'n' : 'p'], {
       code: data.code,
       symbol: data.symbol,
       number: super.format(value).replace('-', '')
@@ -29,17 +28,9 @@ export default class CurrencyFormat extends NumberFormat {
   }
 
   _createRegExp(format, options) {
-    return new RegExp(this._escapeRegExp(format)
+    return new RegExp(escape(format)
       .replace(/\s*\\\{\\\{(symbol|code|number)\\\}\\\}\s*/g, (full, name) => {
-        return name === 'number' ?
-          '(.*)' :
-          this._escapeRegExp(options[name]) || '';
+        return name === 'number' ? '(.*)' : escape(options[name]) || '';
       }));
-  }
-
-  _escapeRegExp(value) {
-    // http://phpjs.org/functions/preg_quote/
-    return String(value)
-      .replace(new RegExp('[.\\\\+*?\\[\\^\\]$(){}=!<>|:-]', 'g'), '\\$&');
   }
 }
