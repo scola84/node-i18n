@@ -18,7 +18,11 @@
     "rollup-plugin-node-resolve": "^2.0.0"
   },
   "scripts": {
-    "build": "rollup -c",
-    "prepublish": "npm run build"
+    "build": "npm run cleanup && npm run rollup",
+    "build:min": "npm run build && npm run min",
+    "cleanup": "rm -rf dist",
+    "min": "uglifyjs dist/i18n.js -m -o dist/i18n.min.js",
+    "prepublish": "npm run build:min",
+    "rollup": "rollup -c"
   }
 }
