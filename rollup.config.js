@@ -2,8 +2,8 @@ import buble from 'rollup-plugin-buble';
 import resolve from 'rollup-plugin-node-resolve';
 
 export default {
-  entry: 'index.js',
   dest: './dist/i18n.js',
+  entry: 'index.js',
   format: 'cjs',
   external: [
     'events',
@@ -11,9 +11,9 @@ export default {
     'moment-timezone'
   ],
   plugins: [
-    buble(),
     resolve({
-      'jsnext:main': true
-    })
+      jsnext: true
+    }),
+    buble()
   ]
 };
