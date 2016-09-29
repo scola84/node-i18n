@@ -1,6 +1,6 @@
 {
   "name": "@scola/i18n",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "I18n",
   "repository": "github:scola84/node-i18n",
   "author": "M.C. van den Boogaart <scola@kvdb.name>",
