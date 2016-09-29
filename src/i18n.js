@@ -1,7 +1,7 @@
 /* eslint prefer-reflect: "off" */
 
 import merge from 'lodash-es/merge';
-import { EventEmitter } from '@scola/events';
+import { EventEmitter } from 'events';
 import CurrencyFormat from './currency';
 import DateFormat from './date';
 import NumberFormat from './number';

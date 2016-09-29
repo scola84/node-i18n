@@ -1,18 +1,19 @@
 import buble from 'rollup-plugin-buble';
+import resolve from 'rollup-plugin-node-resolve';
 
 export default {
   entry: 'index.js',
   dest: './dist/i18n.js',
   format: 'cjs',
   external: [
-    '@scola/events',
-    'lodash-es/get',
-    'lodash-es/has',
-    'lodash-es/merge',
+    'events',
     'moment',
     'moment-timezone'
   ],
   plugins: [
-    buble()
+    buble(),
+    resolve({
+      'jsnext:main': true
+    })
   ]
 };
