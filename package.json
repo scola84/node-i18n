@@ -19,6 +19,6 @@
   },
   "scripts": {
     "build": "rollup -c",
-    "postinstall": "npm run build"
+    "prepublish": "npm run build"
   }
 }
