@@ -23,8 +23,8 @@ export default class I18n extends EventEmitter {
     this._string = null;
   }
 
-  data(value) {
-    if (typeof value === 'undefined') {
+  data(value = null) {
+    if (value === null) {
       return this._data[this._locale];
     }
 
@@ -36,8 +36,8 @@ export default class I18n extends EventEmitter {
     return this;
   }
 
-  locale(value) {
-    if (typeof value === 'undefined') {
+  locale(value = null) {
+    if (value === null) {
       return this._locale;
     }
 
@@ -50,8 +50,8 @@ export default class I18n extends EventEmitter {
     return this;
   }
 
-  timezone(value) {
-    if (typeof value === 'undefined') {
+  timezone(value = null) {
+    if (value === null) {
       return this._timezone;
     }
 
