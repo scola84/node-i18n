@@ -28,7 +28,7 @@ export default class I18n extends EventEmitter {
       return this._data[this._locale];
     }
 
-    if (typeof data === 'string') {
+    if (typeof value === 'string') {
       return this._data[value];
     }
 
