@@ -1,20 +1,15 @@
+import merge from 'lodash-es/merge';
 import AbstractFormat from './abstract';
 
 export default class NumberFormat extends AbstractFormat {
-  format(value, locale) {
+  format(value, locale = null, data = {}) {
     if (/e/.test(value)) {
       return value;
     }
 
-    const data = this._i18n.data(locale).number;
+    data = merge({}, this._i18n.data(locale).number, data);
 
-    // Improved toFixed, see http://stackoverflow.com/a/23560569
-    const number = Number(
-      Math.round(value + 'e' + data.decimal.size) +
-      'e-' +
-      data.decimal.size
-    ).toFixed(data.decimal.size);
-
+    const number = this.toFixed(value, data.decimal.size);
     const sign = number[0] === '-' ? '-' : '';
     const [intPart, fracPart = ''] = number.replace(sign, '').split('.');
 
@@ -35,8 +30,8 @@ export default class NumberFormat extends AbstractFormat {
     return sign + result + (fracPart ? data.decimal.symbol + fracPart : '');
   }
 
-  parse(value, locale) {
-    const data = this._i18n.data(locale).number;
+  parse(value, locale = null, data = {}) {
+    data = merge({}, this._i18n.data(locale).number, data);
     const sign = value.substr(0, 1) === '-' ? '-' : '';
 
     const [intPart, fracPart = '0', overflow] = value
@@ -70,5 +65,10 @@ export default class NumberFormat extends AbstractFormat {
     }
 
     return parseFloat(sign + groups.join('') + '.' + fracPart);
+  }
+
+  toFixed(value, size) {
+    // Improved toFixed, see http://stackoverflow.com/a/23560569
+    return Number(Math.round(value + 'e' + size) + 'e-' + size).toFixed(size);
   }
 }
