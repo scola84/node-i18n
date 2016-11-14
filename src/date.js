@@ -1,15 +1,14 @@
-import moment from 'moment';
-import 'moment-timezone';
+import moment from 'moment-timezone';
 import AbstractFormat from './abstract';
 
 export default class DateFormat extends AbstractFormat {
   format(dateValue, dateFormat, locale, timezone) {
     return this
-      .moment(locale, timezone, dateValue)
+      .moment(dateValue, locale, timezone)
       .format(dateFormat);
   }
 
-  moment(locale, timezone, dateValue) {
+  moment(dateValue, locale, timezone) {
     return moment(dateValue)
       .locale(locale || this._i18n.locale())
       .tz(timezone || this._i18n.timezone());
