@@ -8,15 +8,14 @@
   "main": "./dist/i18n.js",
   "jsnext:main": "./index.js",
   "dependencies": {
-    "lodash-es": "^4.16.2",
-    "moment": "^2.15.1",
-    "moment-timezone": "^0.5.5"
+    "lodash-es": "^4.17.2",
+    "moment-timezone": "^0.5.9"
   },
   "devDependencies": {
-    "rollup": "^0.36.1",
+    "rollup": "^0.36.3",
     "rollup-plugin-buble": "^0.14.0",
     "rollup-plugin-node-resolve": "^2.0.0",
-    "uglify-js": "^2.7.3"
+    "uglify-js": "^2.7.4"
   },
   "scripts": {
     "build": "npm run cleanup && npm run rollup",
