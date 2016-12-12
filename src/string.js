@@ -4,14 +4,11 @@ import merge from 'lodash-es/merge';
 import AbstractFormat from './abstract';
 import replace from './helper/replace';
 
-export default class StringFormat extends AbstractFormat {
-  constructor(i18n) {
-    super(i18n);
-    this._data = {};
-  }
+const data = {};
 
+export default class StringFormat extends AbstractFormat {
   data(value) {
-    merge(this._data, value);
+    merge(data, value);
     return this;
   }
 
@@ -27,13 +24,13 @@ export default class StringFormat extends AbstractFormat {
   }
 
   get(value, locale) {
-    locale = locale || this._i18n.locale();
+    locale = locale || this._locale;
     const [language] = locale.split('_');
 
-    if (has(this._data, locale + '.' + value)) {
-      return get(this._data, locale + '.' + value);
-    } else if (has(this._data, language + '.' + value)) {
-      return get(this._data, language + '.' + value);
+    if (has(data, locale + '.' + value)) {
+      return get(data, locale + '.' + value);
+    } else if (has(data, language + '.' + value)) {
+      return get(data, language + '.' + value);
     }
 
     return null;

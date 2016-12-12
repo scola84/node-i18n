@@ -5,6 +5,7 @@ import replace from './helper/replace';
 
 export default class CurrencyFormat extends NumberFormat {
   format(value, locale = null, currency = {}, number = {}) {
+    locale = locale || this._locale;
     currency = merge({}, this._i18n.data(locale).currency, currency);
 
     return replace(currency.format[value < 0 ? 'n' : 'p'], {
@@ -15,6 +16,7 @@ export default class CurrencyFormat extends NumberFormat {
   }
 
   parse(value, locale = null, currency = {}, number = {}) {
+    locale = locale || this._locale;
     currency = merge({}, this._i18n.data(locale).currency, currency);
 
     let match = value.match(this._createRegExp(currency.format.n, currency));

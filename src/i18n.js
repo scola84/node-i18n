@@ -13,14 +13,8 @@ export default class I18n extends EventEmitter {
     super();
 
     this._data = packageData;
-
     this._locale = null;
     this._timezone = null;
-
-    this._currency = null;
-    this._date = null;
-    this._number = null;
-    this._string = null;
   }
 
   data(value = null) {
@@ -65,34 +59,30 @@ export default class I18n extends EventEmitter {
   }
 
   currency() {
-    if (!this._currency) {
-      this._currency = new CurrencyFormat(this);
-    }
-
-    return this._currency;
+    return new CurrencyFormat()
+      .i18n(this)
+      .locale(this._locale)
+      .timezone(this._timezone);
   }
 
   date() {
-    if (!this._date) {
-      this._date = new DateFormat(this);
-    }
-
-    return this._date;
+    return new DateFormat()
+      .i18n(this)
+      .locale(this._locale)
+      .timezone(this._timezone);
   }
 
   number() {
-    if (!this._number) {
-      this._number = new NumberFormat(this);
-    }
-
-    return this._number;
+    return new NumberFormat()
+      .i18n(this)
+      .locale(this._locale)
+      .timezone(this._timezone);
   }
 
   string() {
-    if (!this._string) {
-      this._string = new StringFormat(this);
-    }
-
-    return this._string;
+    return new StringFormat()
+      .i18n(this)
+      .locale(this._locale)
+      .timezone(this._timezone);
   }
 }

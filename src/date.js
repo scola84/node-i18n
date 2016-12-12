@@ -10,17 +10,17 @@ export default class DateFormat extends AbstractFormat {
 
   moment(dateValue, locale, timezone) {
     return moment(dateValue)
-      .locale(locale || this._i18n.locale())
-      .tz(timezone || this._i18n.timezone());
+      .locale(locale || this._locale)
+      .tz(timezone || this._timezone);
   }
 
   parse(dateValue, dateFormat, locale, timezone) {
     const result = moment.tz(
       dateValue,
       dateFormat,
-      locale || this._i18n.locale(),
+      locale || this._locale,
       true,
-      timezone || this._i18n.timezone()
+      timezone || this._timezone
     );
 
     return result.isValid() ? result.toDate() : null;
