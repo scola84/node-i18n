@@ -7,11 +7,6 @@ import replace from './helper/replace';
 const data = {};
 
 export default class StringFormat extends AbstractFormat {
-  data(value) {
-    merge(data, value);
-    return this;
-  }
-
   format(value, values, locale) {
     value = this.get(value, locale) || value;
     values = values || {};
@@ -34,5 +29,9 @@ export default class StringFormat extends AbstractFormat {
     }
 
     return null;
+  }
+
+  static data(value) {
+    merge(data, value);
   }
 }
