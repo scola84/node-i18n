@@ -9,20 +9,6 @@
   "jsnext:main": "./index.js",
   "dependencies": {
     "lodash-es": "^4.17.2",
-    "moment-timezone": "^0.5.9"
-  },
-  "devDependencies": {
-    "rollup": "^0.36.3",
-    "rollup-plugin-buble": "^0.14.0",
-    "rollup-plugin-node-resolve": "^2.0.0",
-    "uglify-js": "^2.7.4"
-  },
-  "scripts": {
-    "build": "npm run cleanup && npm run rollup",
-    "build:min": "npm run build && npm run min",
-    "cleanup": "rm -rf dist",
-    "min": "uglifyjs dist/i18n.js -m -o dist/i18n.min.js",
-    "prepublish": "npm run build:min",
-    "rollup": "rollup -c"
+    "moment-timezone": "^0.5.10"
   }
 }
