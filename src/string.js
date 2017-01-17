@@ -1,10 +1,7 @@
 import get from 'lodash-es/get';
 import has from 'lodash-es/has';
-import merge from 'lodash-es/merge';
 import AbstractFormat from './abstract';
 import replace from './helper/replace';
-
-const data = {};
 
 export default class StringFormat extends AbstractFormat {
   format(value, values, locale) {
@@ -20,18 +17,16 @@ export default class StringFormat extends AbstractFormat {
 
   get(value, locale) {
     locale = locale || this._locale;
-    const [language] = locale.split('_');
 
-    if (has(data, locale + '.' + value)) {
-      return get(data, locale + '.' + value);
-    } else if (has(data, language + '.' + value)) {
-      return get(data, language + '.' + value);
+    const [language] = locale.split('_');
+    const strings = this._i18n.strings();
+
+    if (has(strings, locale + '.' + value)) {
+      return get(strings, locale + '.' + value);
+    } else if (has(strings, language + '.' + value)) {
+      return get(strings, language + '.' + value);
     }
 
     return null;
-  }
-
-  static data(value) {
-    merge(data, value);
   }
 }

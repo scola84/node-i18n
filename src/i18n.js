@@ -13,6 +13,8 @@ export default class I18n extends EventEmitter {
     super();
 
     this._data = packageData;
+    this._strings = {};
+
     this._locale = null;
     this._timezone = null;
   }
@@ -27,6 +29,15 @@ export default class I18n extends EventEmitter {
     }
 
     merge(this._data, value);
+    return this;
+  }
+
+  strings(value = null) {
+    if (value === null) {
+      return this._strings;
+    }
+
+    merge(this._strings, value);
     return this;
   }
 
