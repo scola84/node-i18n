@@ -5,7 +5,7 @@
   "repository": "github:scola84/node-i18n",
   "author": "M.C. van den Boogaart <scola@kvdb.name>",
   "license": "MIT",
-  "main": "./dist/i18n.js",
+  "main": "./index.js",
   "jsnext:main": "./index.js",
   "dependencies": {
     "lodash-es": "^4.17.2",
