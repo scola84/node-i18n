@@ -23,6 +23,6 @@ export default class DateFormat extends AbstractFormat {
       timezone || this._timezone
     );
 
-    return result.isValid() ? result.toDate() : null;
+    return result.isValid() === true ? result.toDate() : null;
   }
 }

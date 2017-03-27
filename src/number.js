@@ -3,7 +3,7 @@ import AbstractFormat from './abstract';
 
 export default class NumberFormat extends AbstractFormat {
   format(value, locale = null, data = {}) {
-    if (/e/.test(value)) {
+    if (/e/.test(value) === true) {
       return value;
     }
 
@@ -28,7 +28,8 @@ export default class NumberFormat extends AbstractFormat {
       result = intPart[intPart.length - 1 - i] + result;
     }
 
-    return sign + result + (fracPart ? data.decimal.symbol + fracPart : '');
+    return sign + result + (fracPart.length > 0 ?
+      data.decimal.symbol + fracPart : '');
   }
 
   parse(value, locale = null, data = {}) {
@@ -40,29 +41,30 @@ export default class NumberFormat extends AbstractFormat {
       .replace(sign, '')
       .split(data.decimal.symbol);
 
-    const symbolIndex = data.group.symbol &&
-      fracPart.indexOf(data.group.symbol);
+    const symbolIndex = typeof data.group.symbol === 'string' ?
+      fracPart.indexOf(data.group.symbol) : 0;
 
-    if (overflow || symbolIndex !== -1) {
+    if (overflow || symbolIndex > -1) {
       return NaN;
     }
 
-    const groups = data.group.symbol ?
+    const groups = typeof data.group.symbol === 'string' ?
       intPart.split(data.group.symbol) : [intPart];
 
     const allGroupsAreCorrect = groups.every((group, index) => {
-      if (!(/^\d+$/).test(group)) {
+      if ((/^\d+$/).test(group) === false) {
         return false;
       } else if (index === 0) {
         return group.length >= 1;
       } else if (index === groups.length - 1) {
-        return group.length === (data.group.size === 2 ? 3 : data.group.size);
+        return group.length === (data.group.size === 2 ?
+          3 : data.group.size);
       }
 
       return group.length === data.group.size;
     });
 
-    if (!allGroupsAreCorrect) {
+    if (allGroupsAreCorrect === false) {
       return NaN;
     }
 
@@ -71,6 +73,7 @@ export default class NumberFormat extends AbstractFormat {
 
   toFixed(value, size) {
     // Improved toFixed, see http://stackoverflow.com/a/23560569
-    return Number(Math.round(value + 'e' + size) + 'e-' + size).toFixed(size);
+    return Number(Math.round(value + 'e' + size) + 'e-' + size)
+      .toFixed(size);
   }
 }

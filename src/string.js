@@ -21,9 +21,9 @@ export default class StringFormat extends AbstractFormat {
     const [language] = locale.split('_');
     const strings = this._i18n.strings();
 
-    if (has(strings, locale + '.' + value)) {
+    if (has(strings, locale + '.' + value) === true) {
       return get(strings, locale + '.' + value);
-    } else if (has(strings, language + '.' + value)) {
+    } else if (has(strings, language + '.' + value) === true) {
       return get(strings, language + '.' + value);
     }
 

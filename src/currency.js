@@ -20,12 +20,12 @@ export default class CurrencyFormat extends NumberFormat {
     currency = merge({}, this._i18n.data(locale).currency, currency);
 
     let match = value.match(this._createRegExp(currency.format.n, currency));
-    const sign = match ? '-' : '';
+    const sign = match === true ? '-' : '';
 
-    match = match ||
+    match = match === true ||
       value.match(this._createRegExp(currency.format.p, currency));
 
-    if (match) {
+    if (match === true) {
       return super.parse(sign + match[1].trim(), locale, number);
     }
 
