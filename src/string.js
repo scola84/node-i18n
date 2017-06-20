@@ -4,18 +4,17 @@ import AbstractFormat from './abstract';
 import replace from './helper/replace';
 
 export default class StringFormat extends AbstractFormat {
-  format(value, values, locale) {
-    value = this.get(value, locale) || value;
-    values = values || {};
+  format(value, values = {}, locale = null) {
+    let string = this.get(value, locale) || value;
 
-    value = typeof value === 'object' ?
-      value[values.index] || value.d || null :
-      value;
+    string = typeof string === 'object' ?
+      string[values.index] || value.d || value :
+      string;
 
-    return replace(value, values);
+    return replace(string, values);
   }
 
-  get(value, locale) {
+  get(value, locale = null) {
     locale = locale || this._locale;
 
     const [language] = locale.split('_');
