@@ -1,17 +1,14 @@
 /* eslint prefer-reflect: "off" */
 
 import merge from 'lodash-es/merge';
-import { EventEmitter } from 'events';
 import CurrencyFormat from './currency';
 import DateFormat from './date';
 import NumberFormat from './number';
 import StringFormat from './string';
 import packageData from '../data/data';
 
-export default class I18n extends EventEmitter {
+export default class I18n {
   constructor() {
-    super();
-
     this._data = packageData;
     this._strings = {};
 
@@ -48,11 +45,6 @@ export default class I18n extends EventEmitter {
     }
 
     this._locale = value;
-
-    this.emit('change', {
-      locale: value
-    });
-
     return this;
   }
 
@@ -62,39 +54,26 @@ export default class I18n extends EventEmitter {
     }
 
     this._timezone = value;
-
-    this.emit('change', {
-      timezone: value
-    });
-
     return this;
   }
 
   currency() {
     return new CurrencyFormat()
-      .i18n(this)
-      .locale(this._locale)
-      .timezone(this._timezone);
+      .i18n(this);
   }
 
   date() {
     return new DateFormat()
-      .i18n(this)
-      .locale(this._locale)
-      .timezone(this._timezone);
+      .i18n(this);
   }
 
   number() {
     return new NumberFormat()
-      .i18n(this)
-      .locale(this._locale)
-      .timezone(this._timezone);
+      .i18n(this);
   }
 
   string() {
     return new StringFormat()
-      .i18n(this)
-      .locale(this._locale)
-      .timezone(this._timezone);
+      .i18n(this);
   }
 }

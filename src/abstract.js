@@ -1,8 +1,6 @@
 export default class AbstractFormat {
   constructor() {
     this._i18n = null;
-    this._locale = null;
-    this._timezone = null;
   }
 
   i18n(value = null) {
@@ -14,22 +12,12 @@ export default class AbstractFormat {
     return this;
   }
 
-  locale(value = null) {
-    if (value === null) {
-      return this._locale;
-    }
-
-    this._locale = value;
-    return this;
+  _locale() {
+    return this._i18n.locale();
   }
 
-  timezone(value = null) {
-    if (value === null) {
-      return this._timezone;
-    }
-
-    this._timezone = value;
-    return this;
+  _timezone() {
+    return this._i18n.timezone();
   }
 
   format() {

@@ -7,7 +7,7 @@ export default class NumberFormat extends AbstractFormat {
       return value;
     }
 
-    locale = locale || this._locale;
+    locale = locale || this._locale();
     data = merge({}, this._i18n.data(locale).number, data);
 
     const number = this.toFixed(value, data.decimal.size);
@@ -33,7 +33,7 @@ export default class NumberFormat extends AbstractFormat {
   }
 
   parse(value, locale = null, data = {}) {
-    locale = locale || this._locale;
+    locale = locale || this._locale();
     data = merge({}, this._i18n.data(locale).number, data);
     const sign = value.substr(0, 1) === '-' ? '-' : '';
 

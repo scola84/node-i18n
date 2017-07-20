@@ -15,7 +15,7 @@ export default class StringFormat extends AbstractFormat {
   }
 
   get(value, locale = null) {
-    locale = locale || this._locale;
+    locale = locale || this._locale();
 
     const [language] = locale.split('_');
     const strings = this._i18n.strings();

@@ -1,3 +1,4 @@
+import get from 'lodash-es/get';
 import escape from './escape';
 
 export default function replace(value, values) {
@@ -11,8 +12,7 @@ export default function replace(value, values) {
     matches.forEach((match) => {
       index = match.substring(1, match.length - 1);
       placeholder = new RegExp(escape(match), 'g');
-      replacement = typeof values[index] === 'undefined' ?
-        '' : values[index];
+      replacement = get(values, index) || '';
       value = value.replace(placeholder, replacement);
     });
   }
