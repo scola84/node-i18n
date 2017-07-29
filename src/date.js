@@ -24,14 +24,12 @@ export default class DateFormat extends AbstractFormat {
     locale = locale || this._locale();
     timezone = timezone || this._timezone();
 
-    const result = moment.tz(
+    return moment.tz(
       dateValue,
       dateFormat,
       locale,
       true,
       timezone
     );
-
-    return result.isValid() === true ? result.toDate() : null;
   }
 }
